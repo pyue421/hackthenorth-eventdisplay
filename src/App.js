@@ -51,7 +51,7 @@ function Home({ events, isLoggedIn, loading }) {
 
   return (
     <div>
-      <h1>Hackathon Events 🧩✨</h1>
+      <h1>Hackathon Events 🫧🧩</h1>
       <p className="subtitle">Innovate. Create. Collaborate.</p> 
 
       {/* Navbar for Home and Login buttons */}
@@ -87,7 +87,14 @@ function Home({ events, isLoggedIn, loading }) {
                   <Link to={`/event/${event.id}`}>{event.name}</Link>
                 </h3>
                 <p>Type: {event.event_type}</p>
-                <p>Starts: {new Date(event.start_time).toLocaleString()}</p>
+                <p>Starts: {new Date(event.start_time).toLocaleString([], { 
+                  weekday: 'long', 
+                  year: 'numeric',
+                  month: 'numeric',
+                  day: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}</p>
                 <p>{event.description}</p> 
               </li>
             ))}
