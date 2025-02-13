@@ -8,7 +8,6 @@ import "./App.css";
 function App() {
   const [events, setEvents] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getEvents = async () => {
@@ -16,7 +15,6 @@ function App() {
       console.log("Fetched Events:", data);
       // Sort events by start_time
       setEvents(data.sort((a, b) => a.start_time - b.start_time));
-      setLoading(false);
     };
     getEvents();
   }, []);
@@ -26,7 +24,7 @@ function App() {
       <div>
         <Routes>
           {/* Homepage */}
-          <Route path="/" element={<Home events={events} isLoggedIn={isLoggedIn} loading={loading} />} />
+          <Route path="/" element={<Home events={events} isLoggedIn={isLoggedIn}/>} />
           {/* Event Details Page */}
           <Route path="/event/:id" element={<EventDetails events={events} />} />
           {/* Login Page */}
@@ -37,24 +35,26 @@ function App() {
   );
 }
 
-function Home({ events, isLoggedIn, loading }) {
+function Home({ events, isLoggedIn }) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedEventType, setSelectedEventType] = useState("");
 
-  // Filter events based on the search query
-  const filteredEvents = events.filter((event) => 
-    event.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Filter events based on search query and event type
+  const filteredEvents = events.filter((event) => {
+    const matchesSearch = event.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesType = selectedEventType ? event.event_type === selectedEventType : true;
+    return matchesSearch && matchesType;
+  });
 
-  if (loading) {
-    return <p style={{ textAlign: "center" }}>Loading events...</p>; // Loading message
-  }
+  // Get event types for dropdown
+  const eventTypes = [...new Set(events.map((event) => event.event_type))];
 
   return (
     <div>
       <h1>Hackathon Events 🫧🧩</h1>
       <p className="subtitle">Innovate. Create. Collaborate.</p> 
 
-      {/* Navbar for Home and Login buttons */}
+      {/* Home and Login buttons */}
       <nav className="navbar">
         <Link to="/" className="nav-button">
           Home 
@@ -75,6 +75,22 @@ function Home({ events, isLoggedIn, loading }) {
         />
       </div>
 
+      {/* Event Type Dropdown */}
+      <div style={{ textAlign: "center", margin: "20px 0" }}>
+        <select
+          value={selectedEventType}
+          onChange={(e) => setSelectedEventType(e.target.value)}
+          className="event-type-dropdown"
+        >
+          <option value="">All Event Types</option>
+          {eventTypes.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
+      </div>
+
       {filteredEvents.length === 0 ? (
         <p style={{ textAlign: "center" }}>No events found.</p>
       ) : (
@@ -86,7 +102,6 @@ function Home({ events, isLoggedIn, loading }) {
                 <h3>
                   <Link to={`/event/${event.id}`}>{event.name}</Link>
                 </h3>
-                <p>Type: {event.event_type}</p>
                 <p>Starts: {new Date(event.start_time).toLocaleString([], { 
                   weekday: 'long', 
                   year: 'numeric',
