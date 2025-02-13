@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Inter:wght@400;700&display=swap');
+
 .event-details {
     padding: 20px;
     border: 2px solid #9CB1FC; 
@@ -10,9 +12,11 @@
   
   .event-details h1 {
     color: #223A60;
-    font-size: 32px;
-    margin-top: 10;
+    font-family: 'Inter', sans-serif;
+    font-size: 27px;
+    margin-top: 10px;
     margin-bottom: 10px;
+    text-shadow: none;
   }
   
   /* event description */

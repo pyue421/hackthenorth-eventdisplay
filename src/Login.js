@@ -17,6 +17,11 @@ function Login({ setIsLoggedIn }) {
     }
   };
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    navigate("/"); // Redirect to homepage after logout
+  };
+
   return (
     <div>
       <h2>Login</h2>
@@ -42,6 +47,7 @@ function Login({ setIsLoggedIn }) {
         <Link to="/" className="nav-button">
           Home
         </Link>
+        <button className="nav-button" onClick={handleLogout}>Logout</button>
       </nav>
     </div>
   );

@@ -1,27 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap');
+
 .App {
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  margin: 0;
+  padding-bottom: 30px;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #D0F1E4, #B1B3F3, #95AAF3);
+  color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
   text-align: center;
-  font-size: 3rem;
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 4rem;
   margin-top: 60px;
   font-weight: bold;
-  background: linear-gradient(135deg, #f0f4ff, #ffffff);
-  -webkit-background-clip: text; 
-  color: transparent; 
+  color: #fff5de;
+  text-shadow: 
+    -0.5px  0.5px 0 #203D5F,  
+     1px  1px 0 #203D5F; /* Creates an outline effect */
 }
 
 .subtitle {
@@ -32,7 +37,7 @@ h1 {
   font-size: 1.21rem;
   color: black;
   font-weight: 200;
-  margin-top: -10px;
+  margin-top: -45px;
   margin-bottom: 20px;
   opacity: 0.9;
 }
@@ -93,11 +98,10 @@ h2{
 ul {
   list-style-type: none;
   padding: 0;
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
 }
 
-/* Event card styling */
 li {
   background: rgba(255, 255, 255, 0.1);
   padding: 15px;
@@ -105,6 +109,12 @@ li {
   margin: 10px 0;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  ul {
+    padding: 0 15px; 
+  }
 }
 
 li:hover {
@@ -120,32 +130,6 @@ li h3 a {
 
 li h3 a:hover {
   color: #223A60;
-}
-
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #D0F1E4, #B1B3F3, #95AAF3);
-  color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {

@@ -51,7 +51,7 @@ function Home({ events, isLoggedIn, loading }) {
 
   return (
     <div>
-      <h1>Hackathon Events</h1>
+      <h1>Hackathon Events 🧩✨</h1>
       <p className="subtitle">Innovate. Create. Collaborate.</p> 
 
       {/* Navbar for Home and Login buttons */}
@@ -88,7 +88,7 @@ function Home({ events, isLoggedIn, loading }) {
                 </h3>
                 <p>Type: {event.event_type}</p>
                 <p>Starts: {new Date(event.start_time).toLocaleString()}</p>
-                <p>{event.description}</p>
+                <p>{event.description}</p> 
               </li>
             ))}
         </ul>
